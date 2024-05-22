@@ -1,0 +1,29 @@
+version: "2"
+
+stack_defaults:
+    runner_image: your/first:runner
+    # Note that tflint is not installed by
+    # default - this example assumes that your
+    # runner image has this available.
+    before_init:
+        - echo "checking formatting"
+        - terraform fmt -diff
+        - tflint
+
+# Note that every field in the configuration is
+# optional, and has a reasonable default. This file
+# allows you to override those defaults, and you can
+# merely override individual fields.
+stacks:
+    # The key of is the immutable slug of your stack
+    # which you will find in the URL.
+    babys-first-stack: &shared
+        before_apply:
+            - hostname
+        project_root: infra
+        terraform_version: 0.12.4
+    babys-second-stack:
+        <<: *shared
+        terraform_version: 0.13.0
+        environment:
+            AWS_REGION: eu-west-1
