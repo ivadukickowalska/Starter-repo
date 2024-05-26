@@ -20,6 +20,7 @@ resource "spacelift_stack" "managed" {
   space_id = spacelift_stack.starter-repo.id
   autodeploy = true
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
+  depends_on = [spacelift_space.starter-repo]
 }
 
 resource "spacelift_stack" "private_worker" {
@@ -30,6 +31,7 @@ resource "spacelift_stack" "private_worker" {
   repository   = "starter-repo"
   branch       = "main"
   project_root = "Private-worker"
+  depends_on = [spacelift_space.starter-repo]
 }
 
 resource "spacelift_aws_integration_attachment" "this" {
