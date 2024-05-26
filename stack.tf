@@ -16,6 +16,7 @@ resource "spacelift_stack" "aws" {
   name        = "AWS-Integration"
   description = "A stack to create your AWS integration"
   space_id = "root"
+  administrative    = true
   repository   = "starter-repo"
   branch       = "main"
   project_root = "aws-cloud-integration"
