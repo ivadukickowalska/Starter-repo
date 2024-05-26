@@ -1,3 +1,13 @@
+resource "spacelift_space" "starter-repo" {
+  name = "starter-repo"
+
+  # Every account has a root space that serves as the root for the space tree.
+  # Except for the root space, all the other spaces must define their parents.
+  parent_space_id = "root"
+
+  # An optional description of a space.
+  description = "This a child of the root space. It contains all the resources common to the development infrastructure."
+}
 data "spacelift_current_stack" "this" {}
 
 resource "spacelift_stack" "managed" {
@@ -7,7 +17,7 @@ resource "spacelift_stack" "managed" {
   repository   = "starter-repo"
   branch       = "main"
   project_root = "managed-stack"
-
+  space = spacelift_stack.starter-repo.id
   autodeploy = true
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
 }
@@ -15,7 +25,7 @@ resource "spacelift_stack" "managed" {
 resource "spacelift_stack" "private_worker" {
   name        = "Private_worker"
   description = "A stack to create your private_worker"
-  space_id = "root"
+  space = spacelift_stack.starter-repo.id
   administrative    = true
   repository   = "starter-repo"
   branch       = "main"
