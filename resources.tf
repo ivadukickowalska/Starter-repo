@@ -17,7 +17,7 @@ resource "spacelift_stack" "managed" {
   repository   = "starter-repo"
   branch       = "main"
   project_root = "managed-stack"
-  space_id = spacelift_stack.starter-repo.id
+  space_id = spacelift_space.starter-repo.id
   autodeploy = true
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
   depends_on = [spacelift_space.starter-repo]
@@ -26,7 +26,7 @@ resource "spacelift_stack" "managed" {
 resource "spacelift_stack" "private_worker" {
   name        = "Private_worker"
   description = "A stack to create your private_worker"
-  space_id = spacelift_stack.starter-repo.id
+  space_id = spacelift_space.starter-repo.id
   administrative    = true
   repository   = "starter-repo"
   branch       = "main"
