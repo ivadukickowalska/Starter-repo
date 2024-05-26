@@ -1,24 +1,3 @@
-# ACCESS POLICY
-#
-# This example access policy gives everyone in the "Engineering" GitHub team
-# read access to the stack.
-#
-# You can read more about access policies here:
-#
-# https://docs.spacelift.io/concepts/policy/stack-access-policy
-resource "spacelift_policy" "access" {
-  type = "ACCESS"
-
-  name = "All of Engineering gets read access"
-  body = file("${path.module}/policies/access.rego")
-}
-
-# Access policies only take effect when attached to the stack.
-resource "spacelift_policy_attachment" "access" {
-  policy_id = spacelift_policy.access.id
-  stack_id  = spacelift_stack.managed.id
-}
-
 # PLAN POLICY
 #
 # This example plan policy prevents you from creating weak passwords, and warns 
@@ -89,22 +68,4 @@ resource "spacelift_policy_attachment" "trigger" {
 resource "spacelift_policy_attachment" "trigger-self" {
   policy_id = spacelift_policy.trigger.id
   stack_id  = data.spacelift_current_stack.this.id
-}
-
-# LOGIN POLICY
-#
-# This example login policy gives everyone in the GitHub organization access to
-# Spacelift and makes all members of the GitHub "DevOps" team admins.
-#
-# Note that unlike all other policies, login policies operate on the global
-# level and are not attached to individual stacks.
-#
-# You can read more about login policies here:
-#
-# https://docs.spacelift.io/concepts/policy/login-policy
-resource "spacelift_policy" "login" {
-  type = "LOGIN"
-
-  name = "DevOps are admins"
-  body = file("${path.module}/policies/login.rego")
 }
