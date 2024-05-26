@@ -53,7 +53,7 @@ resource "spacelift_policy_attachment" "push" {
 resource "spacelift_policy" "trigger" {
   type = "TRIGGER"
 
-  name = "Trigger stacks that declare an explicit dependency"
+  name = "Trigger stacks that declare a dependency explicitly"
   body = file("${path.module}/policies/trigger.rego")
 }
 
