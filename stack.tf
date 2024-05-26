@@ -21,6 +21,18 @@ resource "spacelift_stack" "aws" {
   project_root = "aws-cloud-integration"
 }
 
+resource "spacelift_environment_variable" "Role name" {
+  stack_id   = "spacelift_stack.aws.id"
+  name       = "TF_VAR_role_name"
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "Role ARN" {
+  stack_id   = "spacelift_stack.aws.id"
+  name       = "TF_VAR_role_arn"
+  write_only = true
+}
+
 # This is an environment variable defined on the stack level. Stack-level
 # environment variables take precedence over those attached via contexts.
 # This evironment variable has its write_only bit explicitly set to false, which
