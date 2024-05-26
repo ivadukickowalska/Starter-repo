@@ -7,6 +7,7 @@
 resource "spacelift_context" "managed" {
   name        = "Managed context"
   description = "Your first context managed by Terraform"
+  space_id = spacelift_space.starter-repo.id
 }
 
 # This is an envioronment variable defined on the context level. When the
@@ -18,6 +19,7 @@ resource "spacelift_context" "managed" {
 # You can read more about environment variables here:
 #
 # https://docs.spacelift.io/concepts/environment#environment-variables
+
 resource "spacelift_environment_variable" "context-plaintext" {
   context_id = spacelift_context.managed.id
   name       = "CONTEXT_PUBLIC"
