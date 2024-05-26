@@ -12,16 +12,6 @@ resource "spacelift_stack" "managed" {
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
 }
 
-resource "spacelift_stack" "aws" {
-  name        = "AWS-Integration"
-  description = "A stack to create your AWS integration"
-  space_id = "root"
-  administrative    = true
-  repository   = "starter-repo"
-  branch       = "main"
-  project_root = "aws-cloud-integration"
-}
-
 resource "spacelift_stack" "private_worker" {
   name        = "Private_worker"
   description = "A stack to create your private_worker"
@@ -40,7 +30,7 @@ resource "spacelift_aws_integration_attachment" "this" {
 
   # The integration needs to exist before we attach it.
   depends_on = [
-    spacelift_aws_integration.this.id
+    spacelift_aws_integration.this
   ]
 }
 
