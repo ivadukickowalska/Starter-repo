@@ -8,7 +8,7 @@
 # https://docs.spacelift.io/concepts/policy/terraform-plan-policy
 resource "spacelift_policy" "plan" {
   type = "PLAN"
-
+  space = "root"
   name = "Enforce password strength"
   body = file("${path.module}/policies/plan.rego")
 }
@@ -31,7 +31,7 @@ resource "spacelift_policy_attachment" "plan" {
 # https://docs.spacelift.io/concepts/policy/git-push-policy
 resource "spacelift_policy" "push" {
   type = "GIT_PUSH"
-
+  space = "root"
   name = "Ignore commits outside the project root"
   body = file("${path.module}/policies/push.rego")
 }
@@ -52,7 +52,7 @@ resource "spacelift_policy_attachment" "push" {
 # https://docs.spacelift.io/concepts/policy/trigger-policy
 resource "spacelift_policy" "trigger" {
   type = "TRIGGER"
-
+  space = "root"
   name = "Trigger stacks that declare a dependency explicitly"
   body = file("${path.module}/policies/trigger.rego")
 }
