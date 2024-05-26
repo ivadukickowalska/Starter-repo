@@ -22,6 +22,28 @@ resource "spacelift_stack" "aws" {
   project_root = "aws-cloud-integration"
 }
 
+resource "spacelift_stack" "private_worker" {
+  name        = "Private_worker"
+  description = "A stack to create your private_worker"
+  space_id = "root"
+  administrative    = true
+  repository   = "starter-repo"
+  branch       = "main"
+  project_root = "Private-worker"
+}
+
+resource "spacelift_aws_integration_attachment" "this" {
+  integration_id = spacelift_aws_integration.this.id
+  stack_id       = spacelift_stack.private_worker.id
+  read           = true
+  write          = true
+
+  # The integration needs to exist before we attach it.
+  depends_on = [
+    spacelift_aws_integration.this.id
+  ]
+}
+
 # This is an environment variable defined on the stack level. Stack-level
 # environment variables take precedence over those attached via contexts.
 # This evironment variable has its write_only bit explicitly set to false, which
