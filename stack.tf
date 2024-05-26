@@ -12,6 +12,15 @@ resource "spacelift_stack" "managed" {
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
 }
 
+resource "spacelift_stack" "aws" {
+  name        = "AWS-Integration"
+  description = "A stack to create your AWS integration"
+  space_id = "root"
+  repository   = "starter-repo"
+  branch       = "main"
+  project_root = "aws-cloud-integration"
+}
+
 # This is an environment variable defined on the stack level. Stack-level
 # environment variables take precedence over those attached via contexts.
 # This evironment variable has its write_only bit explicitly set to false, which
