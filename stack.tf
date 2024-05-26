@@ -24,13 +24,12 @@ resource "spacelift_stack" "aws" {
 resource "spacelift_environment_variable" "Role_name" {
   stack_id   = spacelift_stack.aws.id
   name       = "TF_VAR_role_name"
-  write_only = true
+  write_only = false
 }
 
 resource "spacelift_environment_variable" "Role_ARN" {
   stack_id   = spacelift_stack.aws.id
   name       = "TF_VAR_role_arn"
-  write_only = true
 }
 
 # This is an environment variable defined on the stack level. Stack-level
