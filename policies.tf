@@ -62,10 +62,3 @@ resource "spacelift_policy_attachment" "trigger" {
   policy_id = spacelift_policy.trigger.id
   stack_id  = spacelift_stack.managed.id
 }
-
-# Let's attach the policy to the current stack, so that the child stack is
-# triggered, too.
-resource "spacelift_policy_attachment" "trigger-self" {
-  policy_id = spacelift_policy.trigger.id
-  stack_id  = spacelift_stack.managed.id
-}
