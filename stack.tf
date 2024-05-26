@@ -21,13 +21,13 @@ resource "spacelift_stack" "aws" {
   project_root = "aws-cloud-integration"
 }
 
-resource "spacelift_environment_variable" "Role name" {
+resource "spacelift_environment_variable" "Role_name" {
   stack_id   = "spacelift_stack.aws.id"
   name       = "TF_VAR_role_name"
   write_only = true
 }
 
-resource "spacelift_environment_variable" "Role ARN" {
+resource "spacelift_environment_variable" "Role_ARN" {
   stack_id   = "spacelift_stack.aws.id"
   name       = "TF_VAR_role_arn"
   write_only = true
