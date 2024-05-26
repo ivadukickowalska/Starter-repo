@@ -4,16 +4,6 @@ variable "ami_id" {
   default     = ""
 }
 
-variable "configuration" {
-  type        = string
-  description = <<EOF
-  User configuration. This allows you to decide how you want to pass your token
-  and private key to the environment - be that directly, or using SSM Parameter
-  Store, Vault etc. Ultimately, here you need to export SPACELIFT_TOKEN and
-  SPACELIFT_POOL_PRIVATE_KEY to the environment.
-  EOF
-}
-
 variable "disable_container_credentials" {
   type        = bool
   description = <<EOF
