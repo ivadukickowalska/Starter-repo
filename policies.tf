@@ -67,5 +67,5 @@ resource "spacelift_policy_attachment" "trigger" {
 # triggered, too.
 resource "spacelift_policy_attachment" "trigger-self" {
   policy_id = spacelift_policy.trigger.id
-  stack_id  = data.spacelift_current_stack.this.id
+  stack_id  = spacelift_stack.managed.id
 }
