@@ -119,6 +119,16 @@ variable "worker_pool_id" {
   }
 }
 
+variable "worker_pool_config" {
+  type        = string
+  description = "config of the worker pool."
+}
+
+variable "worker_pool_private_key" {
+  type        = string
+  description = "worker pool private key"
+}
+
 variable "base_name" {
   type        = string
   description = "Base name for resources. If unset, it defaults to `sp5ft-$${var.worker_pool_id}`."
