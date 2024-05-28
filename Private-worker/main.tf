@@ -1,10 +1,18 @@
 terraform {
   required_providers {
+    spacelift = {
+      source = "spacelift-io/spacelift"
+    }
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.57.0"
+      version = "~> 5.0"
     }
   }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "us-east-1"
 }
 
 module "my_workerpool" {
