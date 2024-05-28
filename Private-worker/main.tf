@@ -28,4 +28,5 @@ module "my_workerpool" {
   worker_pool_id    = var.worker_pool_id
   security_groups   = var.security_groups
   vpc_subnets       = var.vpc_subnets
+  spacelift_api_key_secret = var.spacelift_api_key_secret
 } 
