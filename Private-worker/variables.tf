@@ -177,7 +177,6 @@ variable "spacelift_api_key_secret" {
   type        = string
   sensitive   = true
   description = "Secret corresponding to the Spacelift API key to use"
-  default     = null
 }
 
 variable "spacelift_api_key_endpoint" {
