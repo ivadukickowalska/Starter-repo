@@ -18,6 +18,6 @@ module "my_workerpool" {
   min_size          = 1
   max_size          = 5
   worker_pool_id    = var.worker_pool_id
-  security_groups   = var.worker_pool_security_groups
-  vpc_subnets       = var.worker_pool_subnets
+  security_groups   = var.security_groups
+  vpc_subnets       = var.vpc_subnets
 } 
