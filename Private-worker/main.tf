@@ -12,7 +12,6 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-west-1"
 }
 
 module "my_workerpool" {
