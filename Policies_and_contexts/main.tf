@@ -1,3 +1,10 @@
+terraform {
+  required_providers {
+    spacelift = {
+      source = "spacelift-io/spacelift"
+    }
+}
+
 # PLAN POLICY
 #
 # This example plan policy prevents you from creating weak passwords, and warns 
