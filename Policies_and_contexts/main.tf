@@ -16,7 +16,6 @@ terraform {
 # https://docs.spacelift.io/concepts/policy/terraform-plan-policy
 resource "spacelift_policy" "plan" {
   type = "PLAN"
-  space_id = spacelift_space.starter-repo.id
   name = "Enforce password strength"
   body = file("${path.module}/policies/plan.rego")
 }
@@ -39,7 +38,6 @@ resource "spacelift_policy_attachment" "plan" {
 # https://docs.spacelift.io/concepts/policy/git-push-policy
 resource "spacelift_policy" "push" {
   type = "GIT_PUSH"
-  space_id = spacelift_space.starter-repo.id
   name = "Ignore commits outside the project root"
   body = file("${path.module}/policies/push.rego")
 }
@@ -60,7 +58,6 @@ resource "spacelift_policy_attachment" "push" {
 # https://docs.spacelift.io/concepts/policy/trigger-policy
 resource "spacelift_policy" "trigger" {
   type = "TRIGGER"
-  space_id = spacelift_space.starter-repo.id
   name = "Trigger stacks that declare a dependency explicitly"
   body = file("${path.module}/policies/trigger.rego")
 }
@@ -80,7 +77,6 @@ resource "spacelift_policy_attachment" "trigger" {
 resource "spacelift_context" "managed" {
   name        = "Managed context"
   description = "Your first context managed by Terraform"
-  space_id = spacelift_space.starter-repo.id
 }
 
 # This is an envioronment variable defined on the context level. When the
