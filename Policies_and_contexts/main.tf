@@ -3,6 +3,7 @@ terraform {
     spacelift = {
       source = "spacelift-io/spacelift"
     }
+  }
 }
 
 # PLAN POLICY
