@@ -8,6 +8,7 @@ resource "spacelift_space" "starter-repo" {
   # An optional description of a space.
   description = "This a child of the root space. It contains all the resources common to the development infrastructure."
 }
+
 data "spacelift_current_stack" "this" {}
 
 resource "spacelift_stack" "managed" {
@@ -20,6 +21,18 @@ resource "spacelift_stack" "managed" {
   space_id = spacelift_space.starter-repo.id
   autodeploy = true
   labels     = ["managed", "depends-on:${data.spacelift_current_stack.this.id}"]
+  depends_on = [spacelift_space.starter-repo]
+}
+
+resource "spacelift_stack" "Policies_and_context" {
+  name        = "Stack to create and attach policies and contexts"
+  description = "This stack manages your policies and contexts"
+  administrative    = true
+  repository   = "starter-repo"
+  branch       = "main"
+  project_root = "policies_contexts"
+  space_id = spacelift_space.starter-repo.id
+  autodeploy = true
   depends_on = [spacelift_space.starter-repo]
 }
 
